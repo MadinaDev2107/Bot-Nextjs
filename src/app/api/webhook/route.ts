@@ -64,16 +64,6 @@ bot.action(/^view_\d+$/, async (ctx) => {
   const info = `👤 Ism: ${data.name}\n📧 Email: ${
     data.email || "-"
   }\n📞 Telefon: ${data.phone || "-"}`;
-  ctx.reply(info, {
-    reply_markup: {
-      inline_keyboard: [
-        [
-          { text: "✏️ Edit", callback_data: `edit_${id}` },
-          { text: "🗑️ Delete", callback_data: `delete_${id}` },
-        ],
-      ],
-    },
-  });
 });
 
 // Delete student
@@ -179,6 +169,7 @@ bot.on("text", async (ctx) => {
       .from("users")
       .update({
         name: state.data.name,
+        age: state.data.age,
         email: state.data.email,
         phone: state.data.phone,
       })
